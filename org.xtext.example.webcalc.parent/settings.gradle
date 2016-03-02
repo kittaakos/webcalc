@@ -1,0 +1,3 @@
+include 'org.xtext.example.webcalc'
+include 'org.xtext.example.webcalc.ide'
+include 'org.xtext.example.webcalc.web'

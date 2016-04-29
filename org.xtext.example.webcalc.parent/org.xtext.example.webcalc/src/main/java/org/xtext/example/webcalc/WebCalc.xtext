@@ -12,7 +12,7 @@ generate webCalc "http://www.xtext.org/example/webcalc/WebCalc"
 
 Calculation:
 	equations+=Equation*;
-	
+
 Equation:
 	Variable | Result;
 
@@ -45,21 +45,31 @@ InputReference:
 	input=Input;
 
 FunctionCall:
-	Function1Call | Function2Call;
+	Function0Call | Function1Call | Function2Call;
+
+Function0Call:
+	function=Function0 '(' ')';
 
 Function1Call:
-	function=('abs'|'acos'|'asin'|'atan'|'ceil'|'cos'|'cosh'|'exp'|'floor'|'log'|'log10'|'sin'|'sinh'|'sqrt'|'tan'|'tanh')
-	'(' argument=Expression ')';
+	function=Function1 '(' argument=Expression ')';
 
 Function2Call:
-	function=('atan2'|'hypot'|'max'|'min'|'pow')
-	'(' argument1=Expression ',' argument2=Expression ')';
+	function=Function2 '(' argument1=Expression ',' argument2=Expression ')';
 
 NumberLiteral:
 	value=Number;
 
+enum Input:
+	A | B | C;
+
 Number returns ecore::EDouble:
 	INT ('.' INT)?;
 
-enum Input:
-	random | A | B | C;
+Function0:
+	'random';
+
+Function1:
+	'abs'|'acos'|'asin'|'atan'|'ceil'|'cos'|'cosh'|'exp'|'floor'|'log'|'log10'|'sin'|'sinh'|'sqrt'|'tan'|'tanh';
+
+Function2:
+	'atan2'|'hypot'|'max'|'min'|'pow';

@@ -11,6 +11,7 @@ import org.eclipse.xtext.xtext.generator.*
 import org.eclipse.xtext.xtext.generator.model.project.*
 
 var rootPath = ".."
+var baseName = "org.xtext.example.webcalc"
 var fileHeader = "/**
  * Copyright (c) 2016 TypeFox GmbH (http://typefox.io)
  * All rights reserved. This program and the accompanying materials
@@ -24,7 +25,7 @@ Workflow {
 	component = XtextGenerator {
 		configuration = {
 			project = StandardProjectConfig {
-				baseName = "org.xtext.example.webcalc"
+				baseName = baseName
 				rootPath = rootPath
 				web = {
 					enabled = true
@@ -48,6 +49,11 @@ Workflow {
 			}
 			generator = {
 				generateStub = false
+			}
+			webSupport = {
+				framework = "Ace"
+				highlightingPath = "js/xtext/mode-webcalc.js"
+				generateHtmlExample = false
 			}
 		}
 	}

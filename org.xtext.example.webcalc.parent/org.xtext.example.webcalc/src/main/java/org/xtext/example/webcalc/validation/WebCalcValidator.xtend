@@ -7,7 +7,9 @@
  */
 package org.xtext.example.webcalc.validation
 
+import com.google.inject.Inject
 import org.eclipse.xtext.validation.Check
+import org.xtext.example.webcalc.WebCalcEnvironment
 import org.xtext.example.webcalc.webCalc.Calculation
 import org.xtext.example.webcalc.webCalc.Result
 import org.xtext.example.webcalc.webCalc.Variable
@@ -16,6 +18,7 @@ import org.xtext.example.webcalc.webCalc.VariableReference
 import static org.xtext.example.webcalc.webCalc.WebCalcPackage.Literals.*
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import org.xtext.example.webcalc.webCalc.InputReference
 
 /**
  * This class contains custom validation rules. 
@@ -23,6 +26,8 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class WebCalcValidator extends AbstractWebCalcValidator {
+	
+	@Inject WebCalcEnvironment environment
 	
 	@Check
 	def checkOneResult(Calculation calculation) {
@@ -59,6 +64,13 @@ class WebCalcValidator extends AbstractWebCalcValidator {
 		val containingVar = varRef.getContainerOfType(Variable)
 		if (containingVar !== null && varRef.variable == containingVar)
 			error('A variable must not reference itself.', VARIABLE_REFERENCE__VARIABLE)
+	}
+	
+	@Check
+	def checkInputIsSet(InputReference inputRef) {
+		val value = environment.inputs.get(inputRef.input)
+		if (value === null || value.isNaN)
+			error('The input ' + inputRef.input + ' is not set.', INPUT_REFERENCE__INPUT)
 	}
 	
 }

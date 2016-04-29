@@ -1,44 +1,52 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="Content-Language" content="en-us">
-	<title>Example Web Editor</title>
-	<link rel="stylesheet" type="text/css" href="xtext/2.9.1/xtext-ace.css"/>
-	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<script src="webjars/requirejs/2.1.20/require.min.js"></script>
-	<script type="text/javascript">
-		var baseUrl = window.location.pathname;
-		var fileIndex = baseUrl.indexOf("index.html");
-		if (fileIndex > 0)
-			baseUrl = baseUrl.slice(0, fileIndex);
-		require.config({
-			baseUrl: baseUrl,
-			paths: {
-				"jquery": "webjars/jquery/2.1.4/jquery.min",
-				"ace/ext/language_tools": "webjars/ace/1.2.0/src/ext-language_tools",
-				"xtext/xtext-ace": "xtext/2.9.1/xtext-ace"
-			}
-		});
-		require(["webjars/ace/1.2.0/src/ace"], function() {
-			require(["xtext/xtext-ace"], function(xtext) {
-				xtext.createEditor({
-					baseUrl: baseUrl,
-					syntaxDefinition: "xtext-resources/generated/mode-webcalc"
-				});
-			});
-		});
-	</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Language" content="en-us">
+  <title>Xtext Web Calculator</title>
+  <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="xtext/2.9.2/xtext-ace.css"/>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
 
-<div class="container">
-	<div class="header">
-		<h1>Example WebCalc Web Editor</h1>
-	</div>
-	<div class="content">
-		<div id="xtext-editor" data-editor-xtext-lang="webcalc"></div>
-	</div>
-</div>
-
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Xtext Web Calculator</h1>
+        Bla...
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Input</h3>
+        <form>
+          <div class="form-group">
+            <label for="inputA">A</label>
+            <input type="text" class="form-control calc-input" id="inputA" data-input-name="A" placeholder="Number">
+          </div>
+          <div class="form-group">
+            <label for="inputB">B</label>
+            <input type="text" class="form-control calc-input" id="inputB" data-input-name="B" placeholder="Number">
+          </div>
+          <div class="form-group">
+            <label for="inputC">C</label>
+            <input type="text" class="form-control calc-input" id="inputC" data-input-name="C" placeholder="Number">
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <h3>Calculation</h3>
+        <div id="xtext-editor" data-editor-xtext-lang="webcalc"></div>
+      </div>
+      <div class="col-md-4">
+        <h3>Output</h3>
+        <div id="calc-output"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script data-main="js/calc" src="webjars/requirejs/2.2.0/require.min.js"></script>
 </body>
 </html>

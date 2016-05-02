@@ -8,8 +8,10 @@
 package org.xtext.example.webcalc.web
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalProvider
 import org.eclipse.xtext.web.server.XtextServiceDispatcher
 import org.eclipse.xtext.web.server.model.IWebDocumentProvider
+import org.xtext.example.webcalc.ide.WebCalcContentProposalProvider
 import org.xtext.example.webcalc.web.services.WebCalcServiceDispatcher
 import org.xtext.example.webcalc.web.services.WebDocumentProvider
 
@@ -25,6 +27,10 @@ class WebCalcWebModule extends AbstractWebCalcWebModule {
 	
 	def Class<? extends IWebDocumentProvider> bindIWebDocumentProvider() {
 		WebDocumentProvider
+	}
+	
+	def Class<? extends IdeContentProposalProvider> bindIdeContentProposalProvider() {
+		WebCalcContentProposalProvider
 	}
 	
 }

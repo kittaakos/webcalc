@@ -8,7 +8,7 @@
 
 require(['./requirejs-setup'], function () {
 	
-	var initialContent = 'result = (A + B) / C';
+	var initialContent = 'let x = 2 * sqrt(B)\nresult = (A + x) / C';
 	
 	require(['jquery', 'bootstrap', 'webjars/ace/1.2.2/src/ace'], function($) {
 		require(['xtext/xtext-ace'], function(xtext) {

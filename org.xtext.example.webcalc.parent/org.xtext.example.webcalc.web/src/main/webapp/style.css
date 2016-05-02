@@ -4,3 +4,7 @@
 	padding: 4px;
 	border: 1px solid #aaa;
 }
+
+#calc-output {
+	font: 16px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+}
